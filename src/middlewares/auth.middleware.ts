@@ -5,7 +5,7 @@ import prisma from "../libs/prisma";
 export const protect = async (
   req: Request,
   res: Response,
-  next: NextFunction,
+  next: NextFunction
 ): Promise<void> => {
   try {
     const { userId } = getAuth(req);

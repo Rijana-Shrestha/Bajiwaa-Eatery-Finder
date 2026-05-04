@@ -1,8 +1,8 @@
 import { Router } from "express";
-import { handleWebhook } from "../controllers/auth.controller";
+import { syncUserController } from "../controllers/auth.controller";
 
 const router = Router();
 
-router.post("/webhook", handleWebhook);
+router.post("/sync", syncUserController);
 
 export default router;

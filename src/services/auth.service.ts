@@ -1,19 +1,16 @@
 import prisma from "../libs/prisma";
 
-export const createUser = async (clerkId: string) => {
-  const user = await prisma.user.create({
-    data: {
-      clerkId,
-    },
+export const syncUser = async (clerkId: string) => {
+  const existingUser = await prisma.user.findUnique({
+    where: { clerkId },
   });
-  return user;
-};
-
-export const deleteUser = async (clerkId: string) => {
-  const user = await prisma.user.delete({
-    where: {
-      clerkId,
-    },
-  });
-  return user;
+  if (!existingUser) {
+    const newUser = await prisma.user.create({
+      data: {
+        clerkId,
+      },
+    });
+    return newUser;
+  }
+  return existingUser;
 };
