@@ -1,7 +1,6 @@
 import { Request, Response } from "express";
 import { getAuth } from "@clerk/express";
 import { syncUser } from "../services/auth.service";
-import { get } from "node:http";
 
 export const syncUserController = async (req: Request, res: Response) => {
   try {
